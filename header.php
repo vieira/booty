@@ -39,18 +39,12 @@
                     </a>
                     <a class="brand" href="/"><?php bloginfo('name'); ?></a>
 		    <nav id="nav-main" class="nav-collapse" role="navigation">
-<?php
-if (has_nav_menu('main')) {
-	$args = array(
-	    'theme_location' => 'main',
-	    'depth'          => 2,
-	    'container'      => false,
-	    'menu_class'     => 'nav',
-	    'walker'         => new Bootstrap_Walker_Nav_Menu()
-	);
-	wp_nav_menu($args);
-}
-?>
+			<?php
+			if (has_nav_menu('main')) {
+			  wp_nav_menu(array('theme_location' => 'main', 
+					    'menu_class' => 'nav'));
+			}
+			?>
                     </nav>
                 </div>
             </div>

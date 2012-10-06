@@ -1,112 +1,94 @@
 <?php
+/*
+ * This file was forked from https://github.com/retlehs/roots
+ */
+class Roots_Nav_Walker extends Walker_Nav_Menu {
+  function check_current($classes) {
+    return preg_match('/(current[-_])|active|dropdown/', $classes);
+  }
 
-add_action( 'after_setup_theme', 'bootstrap_setup' );
+  function start_lvl(&$output, $depth = 0, $args = array()) {
+    $output .= "\n<ul class=\"dropdown-menu\">\n";
+  }
 
-if ( ! function_exists( 'bootstrap_setup' ) ):
+  function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
+    $item_html = '';
+    parent::start_el($item_html, $item, $depth, $args);
 
-	function bootstrap_setup(){
+    if ($item->is_dropdown && ($depth === 0)) {
+      $item_html = str_replace('<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html);
+      $item_html = str_replace('</a>', ' <b class="caret"></b></a>', $item_html);
+    }
+    elseif (in_array('divider-vertical', $item->classes)) {
+      $item_html = '<li class="divider-vertical">';
+    }  
+    elseif (in_array('divider', $item->classes)) {
+      $item_html = '<li class="divider">';
+    }
+    elseif (in_array('nav-header', $item->classes)) {
+      $item_html = '<li class="nav-header">' . $item->title;
+    }
 
-		add_action( 'init', 'register_menu' );
-			
-		function register_menu(){
-			register_nav_menu( 'main', 'Main Menu' ); 
-		}
+    $output .= $item_html;
+  }
 
-		class Bootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
+  function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output) {
+    $element->is_dropdown = !empty($children_elements[$element->ID]);
 
-			
-			function start_lvl( &$output, $depth ) {
+    if ($element->is_dropdown) {
+      if ($depth === 0) {
+        $element->classes[] = 'dropdown';
+      } elseif ($depth === 1) {
+        $element->classes[] = 'dropdown-submenu';
+      }
+    }
 
-				$indent = str_repeat( "\t", $depth );
-				$output	   .= "\n$indent<ul class=\"dropdown-menu\">\n";
-				
-			}
+    parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+  }
+}
 
-			function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-				
-				$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+/**
+ * Remove the id="" on nav menu items
+ * Return 'menu-slug' for nav menu classes
+ */
+function roots_nav_menu_css_class($classes, $item) {
+  $slug = sanitize_title($item->title);
+  $classes = preg_replace('/(current(-menu-|[-_]page[-_])(item|parent|ancestor))/', 'active', $classes);
+  $classes = preg_replace('/((menu|page)[-_\w+]+)+/', '', $classes);
 
-				$li_attributes = '';
-				$class_names = $value = '';
+  $classes[] = 'menu-' . $slug;
 
-				$classes = empty( $item->classes ) ? array() : (array) $item->classes;
-				$classes[] = (isset($args->has_children) && $args->has_children) ? 'dropdown' : '';
-				$classes[] = ($item->current || $item->current_item_ancestor) ? 'active' : '';
-				$classes[] = 'menu-item-' . $item->ID;
+  $classes = array_unique($classes);
 
+  return array_filter($classes, 'is_element_empty');
+}
 
-				$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
-				$class_names = ' class="' . esc_attr( $class_names ) . '"';
+add_filter('nav_menu_css_class', 'roots_nav_menu_css_class', 10, 2);
+add_filter('nav_menu_item_id', '__return_null');
 
-				$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
-				$id = strlen( $id ) ? ' id="' . esc_attr( $id ) . '"' : '';
+/**
+ * Clean up wp_nav_menu_args
+ *
+ * Remove the container
+ * Use Roots_Nav_Walker() by default
+ */
+function roots_nav_menu_args($args = '') {
+  $roots_nav_menu_args['container'] = false;
 
-				$output .= $indent . '<li' . $id . $value . $class_names . $li_attributes . '>';
+  if (!$args['items_wrap']) {
+    $roots_nav_menu_args['items_wrap'] = '<ul class="%2$s">%3$s</ul>';
+  }
 
-				$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
-				$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
-				$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-				$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
-				$attributes .= (isset($args->has_children) && $args->has_children) ? ' class="dropdown-toggle" data-toggle="dropdown"' : '';
+  if (current_theme_supports('bootstrap-top-navbar')) {
+    $roots_nav_menu_args['depth'] = 3;
+  }
 
-				$item_output = $args->before;
-				$item_output .= '<a'. $attributes .'>';
-				$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-				$item_output .= (isset($args->has_children) && $args->has_children) ? ' <b class="caret"></b></a>' : '</a>';
-				$item_output .= $args->after;
+  if (!$args['walker']) {
+    $roots_nav_menu_args['walker'] = new Roots_Nav_Walker();
+  }
 
-				$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-			}
+  return array_merge($args, $roots_nav_menu_args);
+}
 
-			function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
+add_filter('wp_nav_menu_args', 'roots_nav_menu_args');
 
-				if ( !$element )
-					return;
-
-				$id_field = $this->db_fields['id'];
-
-				//display this element
-				if ( is_array( $args[0] ) ) 
-					$args[0]['has_children'] = ! empty( $children_elements[$element->$id_field] );
-				else if ( is_object( $args[0] ) ) 
-					$args[0]->has_children = ! empty( $children_elements[$element->$id_field] ); 
-				$cb_args = array_merge( array(&$output, $element, $depth), $args);
-				call_user_func_array(array(&$this, 'start_el'), $cb_args);
-
-				$id = $element->$id_field;
-
-				// descend only when the depth is right and there are childrens for this element
-				if ( ($max_depth == 0 || $max_depth > $depth+1 ) && isset( $children_elements[$id]) ) {
-
-					foreach( $children_elements[ $id ] as $child ){
-
-						if ( !isset($newlevel) ) {
-							$newlevel = true;
-							//start the child delimiter
-							$cb_args = array_merge( array(&$output, $depth), $args);
-							call_user_func_array(array(&$this, 'start_lvl'), $cb_args);
-						}
-						$this->display_element( $child, $children_elements, $max_depth, $depth + 1, $args, $output );
-					}
-						unset( $children_elements[ $id ] );
-				}
-
-				if ( isset($newlevel) && $newlevel ){
-					//end the child delimiter
-					$cb_args = array_merge( array(&$output, $depth), $args);
-					call_user_func_array(array(&$this, 'end_lvl'), $cb_args);
-				}
-
-				//end this element
-				$cb_args = array_merge( array(&$output, $element, $depth), $args);
-				call_user_func_array(array(&$this, 'end_el'), $cb_args);
-
-			}
-
-
-		}
-
-	}
-
-endif;
-?>
