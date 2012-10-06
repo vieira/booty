@@ -1,0 +1,18 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+    Main Developer: João Vieira
+    Contact: vieira [at] yubo.be
+    Twitter: @joaovieira
+
+# THANKS
+
+    <name>
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr, 
+    Bootstrap, Boilerplate
+    Wordpress
