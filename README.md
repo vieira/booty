@@ -5,8 +5,7 @@ A very small wordpress theme intended for developers.
 There are work that needs to be done.
 <ul>
 <li>sidebar.php</li>
-<li>make all pictures use the correct bootstrap classes</li>
-<li>writing a cleaner version of lib/nav.php</li>
+<li>treat <i>caption</i> of pictures with a wp-caption</li>
 <li>fix bugs, add features, make it awesome</li>
 </ul>
 
