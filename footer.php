@@ -1,9 +1,11 @@
-            <hr>
+            </div><!-- container -->
+
+	<div class="container"><hr/>
             <footer>
-                <p>&copy; Company 2012</p>
+                <p>&copy; <a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a> <strong class="muted">Company 2012</strong></p>
             </footer>
 
-        </div> <!-- /container -->
+        </div><!-- container -->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="<?php bloginfo('template_directory'); ?>/js/vendor/bootstrap.min.js"></script>

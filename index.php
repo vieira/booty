@@ -1,4 +1,27 @@
 <?php get_header(); ?>
+<?php //get_sidebar(); ?>
+<div class="row-fluid">
+
+<?php //definição da largura do corpo em função da existencia de sidebars e inclui o sidebar esquerdo se activo
+
+$side = get_theme_mod( 'sidebar_setting', 'default_value' );
+
+if($side == 1 ){
+	include('sidebar-left.php');
+        echo '<div class="span9">';
+}
+elseif($side == 2 ){
+	echo '<div class="span9">';
+}
+elseif($side == 3){
+        include('sidebar-left.php');
+	echo '<div class="span6">';
+}
+else{
+	echo '<div class="span12">';
+}
+?>
+
 <section>
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 <article>
@@ -17,6 +40,21 @@
   <h4>Oops!</h4>
   There are no posts to show at this time :(
 </div>
-</section>
+<div class="alert alert-info"><?php get_search_form(); ?></div>
 <?php endif; ?>
+</section>
+</div>
+<?php   //adds Sidebar direito se activo
+        //$side = get_theme_mod( 'sidebar_setting', 'default_value' );
+
+        if($side == 1 ){
+        }
+        elseif($side == 2 ){
+                include('sidebar-right.php');
+        }
+        elseif($side == 3){
+                include('sidebar-right.php');
+        }
+?>
+</div>
 <?php get_footer(); ?>
