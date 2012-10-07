@@ -41,6 +41,7 @@ else{
 </div>
 <div class="alert alert-info"><?php get_search_form(); ?></div>
 <?php endif; ?>
+<?php include('pager.php'); ?>
 </section>
 </div>
 <?php   //adds Sidebar direito se activo
