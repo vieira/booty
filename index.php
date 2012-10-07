@@ -18,5 +18,6 @@
   There are no posts to show at this time :(
 </div>
 <?php endif; ?>
+<?php include('pager.php'); ?>
 </section>
 <?php get_footer(); ?>
