@@ -16,7 +16,7 @@ function arphabet_widgets_init() {
         register_sidebar( array(
                 'name' => 'left sidebar',
                 'id' => 'left_sidebar',
-                'before_widget' => '<div>',
+                'before_widget' => '<div class="sidebar-nav">',
                 'after_widget' => '</div>',
                 'before_title' => '<h2 class="rounded btn btn-inverse">',
                 'after_title' => '</h2><br><br>',
@@ -28,7 +28,7 @@ function arphabet_widgets_init() {
 	register_sidebar( array(
                 'name' => 'right sidebar',
                 'id' => 'right_sidebar',
-                'before_widget' => '<div>',
+                'before_widget' => '<div class="sidebar-nav">',
                 'after_widget' => '</div>',
                 'before_title' => '<h2 class="rounded btn btn-inverse">',
                 'after_title' => '</h2><br><br>',
@@ -69,6 +69,56 @@ function booty_customize($wp_customize) {
 
 }
 
+if ( ! function_exists( 'booty_content_nav' ) ) :
+/**
+ * Display navigation to next/previous pages when applicable
+ */
+function booty_content_nav( $nav_id ) {
+        global $wp_query;
+
+        if ( $wp_query->max_num_pages > 1 ) : ?>
+                <nav id="<?php echo $nav_id; ?>">
+<div class="nav-previous muted"><?php next_posts_link( __( '<strong><span class="meta-nav">&larr;</span> Older posts</strong>', 'booty' ) ); ?></div>
+<div class="nav-next pull-right muted"><?php previous_posts_link( __( '<strong>Newer posts <span class="meta-nav">&rarr;</span></strong>', 'booty' ) ); ?></div>
+                </nav><!-- #nav-above -->
+        <?php endif;
+}
+endif; // twentyeleven_content_nav
+
+/**
+ * Load javascripts used by the theme
+ */
+function custom_theme_js(){
+    wp_register_script( 'infinite_scroll',  get_template_directory_uri() . '/js/vendor/jquery.infinitescroll.min.js', array('jquery'),null,true );
+    if( ! is_singular() ) {
+        wp_enqueue_script('infinite_scroll');
+    }
+}
+add_action('wp_enqueue_scripts', 'custom_theme_js');
+
+/**
+ * Infinite Scroll
+ */
+function custom_infinite_scroll_js() {
+    if( ! is_singular() ) { ?>
+    <script>
+    var infinite_scroll = {
+        loading: {
+            img: '<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>',
+            msgText: "<?php _e( 'Loading the next set of posts...', 'custom' ); ?>",
+            finishedMsg: "<?php _e( 'All posts loaded.', 'custom' ); ?>"
+        },
+        "nextSelector":"#nav-below .nav-previous a",
+        "navSelector":"#nav-below",
+        "itemSelector":"article",
+        "contentSelector":"#content"
+    };
+    jQuery( infinite_scroll.contentSelector ).infinitescroll( infinite_scroll );
+    </script>
+    <?php
+    }
+}
+add_action( 'wp_footer', 'custom_infinite_scroll_js',100 );
 
 ?>
 

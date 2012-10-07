@@ -21,7 +21,7 @@ else{
 }
 ?>
 
-<section class="list-posts">
+<section id="content" class="list-posts">
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 <article>
 <header class="page-header">
@@ -56,4 +56,5 @@ else{
         }
 ?>
 </div>
+<?php booty_content_nav('nav-below'); ?>
 <?php get_footer(); ?>
