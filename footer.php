@@ -1,8 +1,14 @@
             </div><!-- container -->
 
 	<div class="container"><hr/>
+            <hr />
             <footer>
-                <p>&copy; <a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a> <strong class="muted">Company 2012</strong></p>
+                <p class="pull-left">
+                  &copy; <?php bloginfo('name') ?> <?=date('Y')?>
+                </p>
+		<p class="pull-right muted">
+                  <?php bloginfo('description') ?>
+                </p>
             </footer>
 
         </div><!-- container -->
@@ -16,6 +22,9 @@
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
+	<script>
+	    $("article img").addClass("img-polaroid");
+	</script>
     </body>
 </html>
 <!--<?php echo get_num_queries(); ?> queries. <?php timer_stop(1); ?> seconds. -->

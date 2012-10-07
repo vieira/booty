@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-<?php //get_sidebar(); ?>
 <div class="row-fluid">
 
 <?php //definição da largura do corpo em função da existencia de sidebars e inclui o sidebar esquerdo se activo
@@ -22,19 +21,19 @@ else{
 }
 ?>
 
-<section>
+<section class="list-posts">
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 <article>
 <header class="page-header">
   <h1><?php the_title(); ?> <small><?php the_time('F jS, Y') ?></small></h1>
 </header>
 <div><?php the_content(__('(more...)')); ?></div>
-</article>
 <footer>
 <a class="label" href="<?php comments_link(); ?>">
 <?php comments_number('no responses', 'one response', '% responses'); ?>
 </a>
 </footer>
+</article>
 <?php endwhile; else: ?>
 <div class="alert alert-error alert-block">
   <h4>Oops!</h4>

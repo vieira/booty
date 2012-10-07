@@ -1,6 +1,6 @@
 <?php
 require('lib/nav.php');
-
+require('lib/utils.php');
 ?>
 
 <?php
@@ -19,7 +19,7 @@ function arphabet_widgets_init() {
                 'before_widget' => '<div>',
                 'after_widget' => '</div>',
                 'before_title' => '<h2 class="rounded btn btn-inverse">',
-                'after_title' => '</h2><br>',
+                'after_title' => '</h2><br><br>',
         ) );
 	}
 
@@ -31,7 +31,7 @@ function arphabet_widgets_init() {
                 'before_widget' => '<div>',
                 'after_widget' => '</div>',
                 'before_title' => '<h2 class="rounded btn btn-inverse">',
-                'after_title' => '</h2><br>',
+                'after_title' => '</h2><br><br>',
         ) );
 	}
 
