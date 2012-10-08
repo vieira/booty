@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+<div class="row-fluid">
 
 <?php //definição da largura do corpo em função da existencia de sidebars e inclui o sidebar esquerdo se activo
 
@@ -46,6 +47,7 @@ at <?=$comment->comment_date?>
 </article>
 <?php endwhile; ?>
 </section>
+</div>
 
 <?php   //adds Sidebar direito se activo
         //$side = get_theme_mod( 'sidebar_setting', 'default_value' );
@@ -59,5 +61,5 @@ at <?=$comment->comment_date?>
                 include('sidebar-right.php');
         }
 ?>
-
+</div><!-- closes div class row-fluid-->
 <?php get_footer(); ?>

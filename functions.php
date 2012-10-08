@@ -16,10 +16,10 @@ function arphabet_widgets_init() {
         register_sidebar( array(
                 'name' => 'left sidebar',
                 'id' => 'left_sidebar',
-                'before_widget' => '<div class="sidebar-nav">',
+                'before_widget' => '<div class="well sidebar-nav">',
                 'after_widget' => '</div>',
-                'before_title' => '<h2 class="rounded btn btn-inverse">',
-                'after_title' => '</h2><br><br>',
+                'before_title' => '<h2 class="nav-header">',
+                'after_title' => '</h2><hr/>',
         ) );
 	}
 
@@ -28,10 +28,10 @@ function arphabet_widgets_init() {
 	register_sidebar( array(
                 'name' => 'right sidebar',
                 'id' => 'right_sidebar',
-                'before_widget' => '<div class="sidebar-nav">',
+                'before_widget' => '<div class="well sidebar-nav">',
                 'after_widget' => '</div>',
-                'before_title' => '<h2 class="rounded btn btn-inverse">',
-                'after_title' => '</h2><br><br>',
+                'before_title' => '<h2 class="nav-header">',
+                'after_title' => '</h2><hr/>',
         ) );
 	}
 
@@ -68,22 +68,6 @@ function booty_customize($wp_customize) {
 	) );
 
 }
-
-if ( ! function_exists( 'booty_content_nav' ) ) :
-/**
- * Display navigation to next/previous pages when applicable
- */
-function booty_content_nav( $nav_id ) {
-        global $wp_query;
-
-        if ( $wp_query->max_num_pages > 1 ) : ?>
-                <nav id="<?php echo $nav_id; ?>">
-<div class="nav-previous muted"><?php next_posts_link( __( '<strong><span class="meta-nav">&larr;</span> Older posts</strong>', 'booty' ) ); ?></div>
-<div class="nav-next pull-right muted"><?php previous_posts_link( __( '<strong>Newer posts <span class="meta-nav">&rarr;</span></strong>', 'booty' ) ); ?></div>
-                </nav><!-- #nav-above -->
-        <?php endif;
-}
-endif; // twentyeleven_content_nav
 
 /**
  * Load javascripts used by the theme

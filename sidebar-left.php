@@ -1,4 +1,4 @@
-<div class="span3 well">
+<div class="span3">
 <?php 
 	if ( dynamic_sidebar('left_sidebar') ) : 
 	else : ?>

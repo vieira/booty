@@ -12,13 +12,68 @@
         <meta name="description" content="<?php bloginfo( 'description' ); ?>">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 60px;
-                padding-bottom: 40px;
-            }
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap.min.css">
+	<style>
+		body{
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+	</style>
+
+
+<style>
+		/*fix*/
+	    .sidebar-nav{
+		padding:9px 0;
+	    }
+
+	    .sidebar-nav li > a{
+		display: block;
+	    }
+
+	    .sidebar-nav ul li {
+		/*list-style: none;*/
+		display: block;
+	    }
+
+	    .sidebar-nav li  a:hover {
+		text-decoration: none;
+		background-color: #eeeeee;
+	    }
+
+	   .sidebar-nav hr{
+		margin: 0;
+	 	height: 5px;
+	   }
+
+	   .sidebar-nav li > a{
+		margin-right: 0;
+		margin-left: -25px;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	   }
+
+	   .sidebar-nav li > a {
+		padding: 3px 15px;
+	   }
+
+	  .sidebar-nav input[type="text"]{
+		width: 80%;
+		margin-left: 5%;
+	  }
+
+	  .sidebar-nav input[type="submit"],
+	  .sidebar-nav select {
+		width:90%;
+		margin-left: 5%;
+	  }
+
+	  #wp-calendar{
+		margin-left: 10%;
+		width: 80%;
+	  }
+
         </style>
+
         <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 
@@ -56,4 +111,5 @@
 	Please go to the administration panel and create a menu named 'main'
 	and select it as your Main Menu.
 	</div>
+
 	<?php endif; ?>

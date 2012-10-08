@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+
 <div class="row-fluid">
 
 <?php //definição da largura do corpo em função da existencia de sidebars e inclui o sidebar esquerdo se activo
@@ -29,7 +30,7 @@ else{
 </header>
 <div><?php the_content(__('(more...)')); ?></div>
 <footer>
-<a class="label" href="<?php comments_link(); ?>">
+<a class="label" onmouseover="this.className='label label-inverse'" onmouseout="this.className='label'" href="<?php comments_link(); ?>">
 <?php comments_number('no responses', 'one response', '% responses'); ?>
 </a>
 </footer>
@@ -57,5 +58,4 @@ else{
         }
 ?>
 </div>
-<?php booty_content_nav('nav-below'); ?>
 <?php get_footer(); ?>
