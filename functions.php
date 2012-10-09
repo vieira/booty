@@ -6,7 +6,7 @@ require('lib/utils.php');
 <?php
 /**
  * Register our sidebars and widgetized areas.
- *
+ * Conforme o defenido na pagina Costumize do tema no painel de administração
  */
 function arphabet_widgets_init() {
 
@@ -17,9 +17,9 @@ function arphabet_widgets_init() {
                 'name' => 'left sidebar',
                 'id' => 'left_sidebar',
                 'before_widget' => '<div class="well sidebar-nav">',
-                'after_widget' => '</div>',
-                'before_title' => '<h2 class="nav-header">',
-                'after_title' => '</h2><hr/>',
+                'after_widget' => '</ul></div>',
+                'before_title' => '<ul class="nav nav-list"><li class="nav-header">',
+                'after_title' => '</li>',
         ) );
 	}
 
@@ -29,9 +29,9 @@ function arphabet_widgets_init() {
                 'name' => 'right sidebar',
                 'id' => 'right_sidebar',
                 'before_widget' => '<div class="well sidebar-nav">',
-                'after_widget' => '</div>',
-                'before_title' => '<h2 class="nav-header">',
-                'after_title' => '</h2><hr/>',
+                'after_widget' => '</ul></div>',
+                'before_title' => '<ul class="nav nav-list"><li class="nav-header">',
+                'after_title' => '</li>',
         ) );
 	}
 
