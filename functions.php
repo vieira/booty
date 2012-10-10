@@ -17,8 +17,8 @@ function arphabet_widgets_init() {
                 'name' => 'left sidebar',
                 'id' => 'left_sidebar',
                 'before_widget' => '<div class="well sidebar-nav">',
-                'after_widget' => '</ul></div>',
-                'before_title' => '<ul class="nav nav-list"><li class="nav-header">',
+                'after_widget' => '</div>',
+                'before_title' => '<li class="nav-header">',
                 'after_title' => '</li>',
         ) );
 	}
@@ -29,9 +29,9 @@ function arphabet_widgets_init() {
                 'name' => 'right sidebar',
                 'id' => 'right_sidebar',
                 'before_widget' => '<div class="well sidebar-nav">',
-                'after_widget' => '</ul></div>',
+                'after_widget' => '</div>',
                 'before_title' => '<ul class="nav nav-list"><li class="nav-header">',
-                'after_title' => '</li>',
+                'after_title' => '</li></ul>',
         ) );
 	}
 

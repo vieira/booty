@@ -71,3 +71,7 @@
         margin-left: 10%;
 }
 
+.booty_post_title,
+.booty_post_title:hover{
+	color: #000000;
+}

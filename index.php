@@ -26,13 +26,20 @@ else{
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 <article>
 <header class="page-header">
-  <h1><?php the_title(); ?> <small><?php the_time('F jS, Y') ?></small></h1>
+  <h1><a href="<?php echo get_permalink( $post->ID ); ?>" class="booty_post_title"><?php the_title(); ?></a> <small><?php the_time('F jS, Y') ?></small></h1>
 </header>
 <div><?php the_content(__('(more...)')); ?></div>
 <footer>
 <a class="label" onmouseover="this.className='label label-inverse'" onmouseout="this.className='label'" href="<?php comments_link(); ?>">
 <?php comments_number('no responses', 'one response', '% responses'); ?>
-</a>
+</a><br><br>
+<?php //tags
+	$listtag = get_the_tag_list('<strong>Related topics:</strong> ',' <i class="icon-search"></i> ',' <i class="icon-search"></i>');
+	if($listtag){
+		$mhtml="<div class='alert alert-info'>$listtag</div>";
+		echo $mhtml;
+	}
+?>
 </footer>
 </article>
 <?php endwhile; else: ?>
