@@ -28,6 +28,7 @@ else{
   <h1><?php the_title(); ?> <small><?php the_time('F jS, Y') ?></small></h1>
 </header>
 <div><?php the_content(); ?></div>
+<?php require('tags.php'); ?>
 <hr />
 <section id="comments">
 <h3>Comments</h3>

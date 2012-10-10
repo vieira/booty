@@ -69,5 +69,18 @@ function booty_customize($wp_customize) {
 
 }
 
+function register_my_menus() {
+  register_nav_menus(
+    array( 'main' => __( 'Main' ) )
+  );
+}
+
+/*function register_my_menus() {
+  register_nav_menus(
+    array( 'theme_location' => 'main', 'menu_class' => 'nav' )
+  );
+}*/
+add_action( 'init', 'register_my_menus' );
+
 ?>
 
