@@ -2,7 +2,7 @@
 
 <div class="row-fluid">
 
-<?php //definição da largura do corpo em função da existencia de sidebars e inclui o sidebar esquerdo se activo
+<?php //Definição da largura do corpo em função da existencia de sidebars e inclui o sidebar esquerdo se activo
 
 $side = get_theme_mod( 'sidebar_setting', 'default_value' );
 
@@ -33,7 +33,7 @@ else{
 <a class="label" onmouseover="this.className='label label-inverse'" onmouseout="this.className='label'" href="<?php comments_link(); ?>">
 <?php comments_number('no responses', 'one response', '% responses'); ?>
 </a><br><br>
-<?php //tags
+<?php //ADDs tags to the bottom of the post if they exist
 	$listtag = get_the_tag_list('<strong>Related topics:</strong> ',' <i class="icon-search"></i> ',' <i class="icon-search"></i>');
 	if($listtag){
 		$mhtml="<div class='alert alert-info'>$listtag</div>";
@@ -53,7 +53,6 @@ else{
 </section>
 </div>
 <?php   //adds Sidebar direito se activo
-        //$side = get_theme_mod( 'sidebar_setting', 'default_value' );
 
         if($side == 1 ){
         }

@@ -75,3 +75,10 @@
 .booty_post_title:hover{
 	color: #000000;
 }
+
+/*Cleans list mark from default widget Archives and Blogroll*/
+.sidebar-nav ul,
+ul.xoxo ,
+ul.blogroll {
+	list-style-type: none;
+}
