@@ -39,6 +39,7 @@ function arphabet_widgets_init() {
 }
 add_action( 'widgets_init', 'arphabet_widgets_init' );
 
+/*Adds admin option to activate sidebars*/
 add_action( 'customize_register', 'booty_customize' );
 
 function booty_customize($wp_customize) {
@@ -69,17 +70,13 @@ function booty_customize($wp_customize) {
 
 }
 
+/* Fixes Main Menu option when NO sidebar is active */
 function register_my_menus() {
   register_nav_menus(
     array( 'main' => __( 'Main' ) )
   );
 }
 
-/*function register_my_menus() {
-  register_nav_menus(
-    array( 'theme_location' => 'main', 'menu_class' => 'nav' )
-  );
-}*/
 add_action( 'init', 'register_my_menus' );
 
 ?>
