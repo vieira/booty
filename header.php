@@ -12,17 +12,19 @@
         <meta name="description" content="<?php bloginfo( 'description' ); ?>">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 60px;
-                padding-bottom: 40px;
-            }
-        </style>
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap.min.css">
+	<style>
+		body{
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+	</style>
+
         <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 
         <script src="<?php bloginfo('template_directory'); ?>/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+
     <?php //wp_head(); ?>
     </head>
     <body>
@@ -37,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/"><?php bloginfo('name'); ?></a>
+                    <a class="brand" href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a>
 		    <nav id="nav-main" class="nav-collapse" role="navigation">
 			<?php
 			if (has_nav_menu('main')) {
@@ -56,4 +58,5 @@
 	Please go to the administration panel and create a menu named 'main'
 	and select it as your Main Menu.
 	</div>
+
 	<?php endif; ?>
