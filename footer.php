@@ -1,6 +1,7 @@
             </div><!-- container -->
 
 	<div class="container"><hr/>
+
             <footer>
                 <p class="pull-left">
                   &copy; <?php bloginfo('name') ?> <?=date('Y')?>

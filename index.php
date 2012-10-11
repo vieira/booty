@@ -22,6 +22,7 @@ else{
 }
 ?>
 
+<div id="content" class="list-posts">
 <section id="content" class="list-posts">
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 <article>
@@ -34,13 +35,7 @@ else{
 <?php comments_number('no responses', 'one response', '% responses'); ?>
 </a><br><br>
 <?php //ADDs tags to the bottom of the post if they exist
-	/*$listtag = get_the_tag_list('<strong>Related topics:</strong> ',' <i class="icon-search"></i> ',' <i class="icon-search"></i>');
-	if($listtag){
-		$mhtml="<div class='alert alert-info'>$listtag</div>";
-		echo $mhtml;
-	}*/
-require('tags.php');
-?>
+	require('tags.php'); ?>
 </footer>
 </article>
 <?php endwhile; else: ?>
@@ -53,6 +48,7 @@ require('tags.php');
 <?php include('pager.php'); ?>
 </section>
 </div>
+</div><!-- pseudo div content -->
 <?php   //adds Sidebar direito se activo
 
         if($side == 1 ){

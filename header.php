@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 
         <script src="<?php bloginfo('template_directory'); ?>/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+
     <?php //wp_head(); ?>
     </head>
     <body>
