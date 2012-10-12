@@ -15,7 +15,7 @@ Showing all we know about it.
 </header>
 <div><?php the_content(__('(more...)')); ?></div>
 <footer>
-<a class="label" onmouseover="this.className='label label-inverse'" onmouseout="this.className='label'" href="<?php comments_link(); ?>">
+<a class="label" onmouseover="this.className='label label-info'" onmouseout="this.className='label'" href="<?php comments_link(); ?>">
 <?php comments_number('no responses', 'one response', '% responses'); ?>
 </a>
 </footer>
@@ -25,9 +25,10 @@ Showing all we know about it.
   <h4>Oops!</h4>
   There are no posts to show at this time :(
 </div>
-</section>
 <?php endif; ?>
 <?php include('pager.php'); ?>
+</section>
 </div>
 <?php get_sidebar('right'); ?>
+</div>
 <?php get_footer(); ?>
