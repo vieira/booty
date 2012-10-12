@@ -25,8 +25,10 @@ Showing all we know about it.
   <h4>Oops!</h4>
   There are no posts to show at this time :(
 </div>
-</section>
 <?php endif; ?>
+<?php include('pager.php'); ?>
+</section>
 </div>
 <?php get_sidebar('right'); ?>
+</div>
 <?php get_footer(); ?>
