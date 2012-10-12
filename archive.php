@@ -27,6 +27,7 @@ Showing all we know about it.
 </div>
 </section>
 <?php endif; ?>
+<?php include('pager.php'); ?>
 </div>
 <?php get_sidebar('right'); ?>
 <?php get_footer(); ?>
