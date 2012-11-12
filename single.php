@@ -15,7 +15,8 @@
 <hr />
 <section id="comments">
 <h3>Comments</h3>
-<?php foreach (get_comments('post_id=' . get_the_ID()) as $comment): ?>
+<?php foreach (get_comments('post_id=' . get_the_ID()) as $comment): 
+	if($comment->comment_approved == 1): ?>
 <blockquote>
 <p><?=$comment->comment_content?></p>
 <small>
@@ -25,7 +26,8 @@
 at <?=$comment->comment_date?>
 </small>
 </blockquote>
-<?php endforeach; ?>
+<?php endif;
+	endforeach; ?>
 <?php include('comments.php'); ?>
 </section>
 </article>
